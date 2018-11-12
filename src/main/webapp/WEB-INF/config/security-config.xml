@@ -12,13 +12,27 @@
 	<http auto-config="true">
 		<intercept-url pattern="/**" access="ROLE_USER"/>
 	</http>
-	
+<!-- 	
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
-				<user name="etienne" password="secret" authorities="ROLE_USER"/>
+				<user name="bryan" password="secret1" authorities="ROLE_USER"/>
+				<user name="chris" password="secret2" authorities="ROLE_USER"/>				
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
-	
+ -->
+ 	<authentication-manager>
+ 		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"/>	 		
+ 		</authentication-provider>
+	</authentication-manager>
+ 	
+	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <beans:property name="url" value="jdbc:mysql://localhost:3306/fitnesstracker?serverTimezone=UTC" />                
+        <beans:property name="username" value="fitnesstracker" />
+        <beans:property name="password" value="fitnesstracker" /> 	
+	</beans:bean>
+
 </beans:beans>
